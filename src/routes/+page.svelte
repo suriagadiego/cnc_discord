@@ -25,13 +25,13 @@
     function initializeUnity() {
         // Load the WebGL.loader.js script
         const script = document.createElement("script");
-        script.src = "/Build/WebGL.loader.js";
+        script.src = "/Build/WebGL98.loader.js";
         script.async = true;
         script.onload = () => {
             createUnityInstance(unityCanvas, {
-                dataUrl: "/Build/WebGL.data.gz",
-                frameworkUrl: "/Build/WebGL.framework.js.gz",
-                codeUrl: "/Build/WebGL.wasm.gz",
+                dataUrl: "/Build/4e42066e02942cabfbfbec5fd60f3b48.data.gz",
+                frameworkUrl: "/Build/59751240597f2ece94392226e6b4b4a7.js.gz",
+                codeUrl: "/Build/36aab88f8a05723886d0e47ff830a576.wasm.gz",
                 streamingAssetsUrl: "StreamingAssets",
                 companyName: config.COMPANY_NAME,
                 productName: config.PRODUCT_NAME,
@@ -68,7 +68,7 @@
         style="
             width: 100vw;
             height: 100vh;
-            background: url('/Build/WebGL.jpg') center / cover;
+            background: url('/LogoText.png') center / cover;
         "
     ></canvas>
 </body>
