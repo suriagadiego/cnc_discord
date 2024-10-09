@@ -29,9 +29,9 @@
         script.async = true;
         script.onload = () => {
             createUnityInstance(unityCanvas, {
-                dataUrl: "/Build/4e42066e02942cabfbfbec5fd60f3b48.data.gz",
+                dataUrl: "./proxy/Build/4e42066e02942cabfbfbec5fd60f3b48.data.gz",
                 frameworkUrl: "/Build/59751240597f2ece94392226e6b4b4a7.js.gz",
-                codeUrl: "/Build/36aab88f8a05723886d0e47ff830a576.wasm.gz",
+                codeUrl: "./proxy/Build/36aab88f8a05723886d0e47ff830a576.wasm.gz",
                 streamingAssetsUrl: "StreamingAssets",
                 companyName: config.COMPANY_NAME,
                 productName: config.PRODUCT_NAME,
