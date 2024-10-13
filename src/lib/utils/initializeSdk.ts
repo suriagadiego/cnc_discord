@@ -9,8 +9,8 @@ export async function initializeSdk(): Promise<DiscordSDK> {
 
     patchUrlMappings(
         [
-            {prefix: '/unity3d.com', target: 'unity3d.com'},
-            {prefix: '/unity.com', target: 'unity.com'}
+            {prefix: '/unity3d', target: 'unity3d.com'},
+            {prefix: '/unity', target: 'unity.com'}
         ]
     );
 
