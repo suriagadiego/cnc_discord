@@ -1,10 +1,18 @@
-import { DiscordSDK } from "@discord/embedded-app-sdk";
+import { DiscordSDK, patchUrlMappings } from "@discord/embedded-app-sdk";
 import { config } from "../config";
 
 export async function initializeSdk(): Promise<DiscordSDK> {
     if (typeof config.CLIENT_ID !== "string") {
         throw new Error("Must specify 'CLIENT_ID'");
     }
+
+
+    patchUrlMappings(
+        [
+            {prefix: '/unity3d.com', target: 'unity3d.com'},
+            {prefix: '/unity.com', target: 'unity.com'}
+        ]
+    );
 
     const discordSdk = new DiscordSDK(config.CLIENT_ID);
     await discordSdk.ready();
@@ -29,3 +37,4 @@ export async function initializeSdk(): Promise<DiscordSDK> {
 
     return discordSdk;
 }
+
