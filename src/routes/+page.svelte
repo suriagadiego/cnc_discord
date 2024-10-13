@@ -48,7 +48,8 @@
             // Block requests to unity3d.com
             if (url.includes('unity3d.com')) {
                 console.warn(`Blocked client-side request to: ${url}`);
-                return new Response('Blocked: Forbidden request to unity3d.com', { status: 403 });
+                console.log("I WAS BLOCKEDDDDD ON THE CLIENT SIDEEEEEEE")
+                return new Response('Blocked: Forbidden request to unity3d.com', { status: 204 });
             }
 
             // Proceed with the original fetch if valid
