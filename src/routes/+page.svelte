@@ -12,10 +12,48 @@
             const originalFetch = window.fetch;
 
             window.fetch = (input, init) => {
+                console.log("THIS IS INPUT", input)
                 // Use the saved original fetch function inside the redefined one
                 return originalFetch(".proxy/" + input, init);
             };
         }
+
+
+        // Override the fetch method to block unity3d.com requests
+        const originalFetch = window.fetch;
+
+        window.fetch = (input, options = {}) => {
+            let url;
+
+            // Handle different types of fetch inputs
+            if (typeof input === 'string') {
+                console.log('STRIIIING')
+                url = input;
+            } else if (input instanceof URL) {
+                url = input.href; // Extract the full URL string from the URL object]
+                console.log('HREFs')
+            } else if (input instanceof Request) {
+                url = input.url;
+                console.log('URL')
+            } else {
+                throw new Error('Invalid fetch input');
+            }
+
+            if (!url){
+                console.log('Heyoo')
+                console.log('THis is url', url)
+                return originalFetch(input, options);
+            }
+
+            // Block requests to unity3d.com
+            if (url.includes('unity3d.com')) {
+                console.warn(`Blocked client-side request to: ${url}`);
+                return new Response('Blocked: Forbidden request to unity3d.com', { status: 403 });
+            }
+
+            // Proceed with the original fetch if valid
+            return originalFetch(input, options);
+        };
 
         discordHelper = new DiscordHelper();
         discordHelper.setupParentIframe();
@@ -29,9 +67,9 @@
         script.async = true;
         script.onload = () => {
             createUnityInstance(unityCanvas, {
-                dataUrl: "/.proxy/Build/4e42066e02942cabfbfbec5fd60f3b48.data.gz",
+                dataUrl: "/Build/4e42066e02942cabfbfbec5fd60f3b48.data.gz",
                 frameworkUrl: "/Build/59751240597f2ece94392226e6b4b4a7.js.gz",
-                codeUrl: "/.proxy/Build/36aab88f8a05723886d0e47ff830a576.wasm.gz",
+                codeUrl: "/Build/36aab88f8a05723886d0e47ff830a576.wasm.gz",
                 streamingAssetsUrl: "StreamingAssets",
                 companyName: config.COMPANY_NAME,
                 productName: config.PRODUCT_NAME,
